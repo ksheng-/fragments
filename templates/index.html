@@ -1,0 +1,73 @@
+{% import "post_macros.html" as post_macros %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+
+      {% if config.generate_rss %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
+      {% endif %}
+
+      {% block css %}
+          <link rel="stylesheet" href="https://unpkg.com/sanitize.css" />
+          <link rel="stylesheet" href="{{ get_url(path="style.css", trailing_slash=false) | safe }}">
+      {% endblock css %}
+
+      {% block extra_head %}
+      {% endblock extra_head %}
+    </head>
+
+    <body>
+
+    {% block content %}
+        {% block header %}
+        <!-- <header> -->
+            <!-- <nav itemscope itemtype="http://schema.org/SiteNavigationElement"> -->
+            <!-- </nav> -->
+        <!-- </header> -->
+        {% endblock header %}
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="left">Kevin Sheng</div>
+                    <div class="right">[gh tw mail]</div>
+                    <div class="clear"></div>
+                    <hr>
+                </div>
+                {% if config.extras.socials %}
+                    {% for key, value in config.extras.socials %}
+                        {{key}}. {{value}}
+                    {% endfor %}
+                {% endif %}
+                {% for page in paginator.pages %}
+                    {{ post_macros::page_in_card(page=page) }}
+                {% endfor %}
+
+                {% if paginator.number_pagers > 1 %}
+                <nav>
+                <p>
+                    {% if paginator.previous %}
+                    <a href="{{ paginator.previous }}">&laquo; Previous</a> |
+                    {% endif %}
+                    <span>Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+                    {% if paginator.next %}
+                    | <a href="{{ paginator.next }}">Next &raquo;</a>
+                    {% endif %}
+                </p>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock content %}
+
+        <!-- <footer> </footer> -->
+    </body>
+
+</html>
