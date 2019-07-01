@@ -11,6 +11,11 @@ summary {
   width: 100%;
 }
 
+body {
+  background-color: $black;
+  min-width: $small-breakpoint;
+}
+
 main {
   display: block;
   margin: 0 auto;
