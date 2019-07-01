@@ -1,0 +1,6 @@
+[submodule "themes/after-dark"]
+	path = themes/after-dark
+	url = https://github.com/getzola/after-dark.git
+[submodule "zola"]
+	path = zola
+	url = https://github.com/getzola/zola

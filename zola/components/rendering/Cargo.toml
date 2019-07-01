@@ -1,0 +1,26 @@
+[package]
+name = "rendering"
+version = "0.1.0"
+authors = ["Vincent Prouillet <prouillet.vincent@gmail.com>"]
+
+[dependencies]
+tera = { version = "1.0.0-beta.10", features = ["preserve_order"] }
+syntect = "3"
+pulldown-cmark = "0.5"
+slug = "0.1"
+serde = "1"
+serde_derive = "1"
+pest = "2"
+pest_derive = "2"
+regex = "1"
+lazy_static = "1"
+
+errors = { path = "../errors" }
+front_matter = { path = "../front_matter" }
+utils = { path = "../utils" }
+config = { path = "../config" }
+link_checker = { path = "../link_checker" }
+
+[dev-dependencies]
+templates = { path = "../templates" }
+

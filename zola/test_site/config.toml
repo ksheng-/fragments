@@ -1,0 +1,15 @@
+title = "My site"
+base_url = "https://replace-this-with-your-url.com"
+highlight_code = true
+compile_sass = true
+generate_rss = true
+theme = "sample"
+
+taxonomies = [
+    {name = "categories", rss = true},
+]
+
+extra_syntaxes = ["syntaxes"]
+
+[extra.author]
+name = "Vincent Prouillet"

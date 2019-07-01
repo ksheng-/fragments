@@ -1,0 +1,13 @@
+base_url = "https://www.getzola.org/"
+title = "Zola"
+description = "Everything you need to make a static site engine in one binary."
+
+compile_sass = true
+highlight_code = true
+insert_anchor_links = true
+highlight_theme = "kronuz"
+build_search_index = true
+# check_external_links = true
+
+[extra]
+author = "Vincent Prouillet"
