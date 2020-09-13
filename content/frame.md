@@ -1,6 +1,6 @@
 +++
 title = "FRAME"
-description = "dystopia for hobbyists!"
+description = "dystopia for \"makers\"."
 date = 2018-09-24
 
 [taxonomies]

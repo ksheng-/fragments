@@ -9,4 +9,5 @@ tags = ["python"]
 
 [extra]
 repo = "ksheng-/fast-differentiable-rasterizer"
+insert_readme = false
 +++

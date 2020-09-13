@@ -1,6 +1,7 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+  <main>
     {% block header %}
         {{ super() }}
     {% endblock header %}
@@ -16,4 +17,5 @@
             {% endfor %}
         </ul>
     {% endif %}
+  </main>
 {% endblock content %}

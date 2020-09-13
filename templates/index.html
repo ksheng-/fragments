@@ -1,73 +1,85 @@
+{% extends "base.html" %}
 {% import "post_macros.html" as post_macros %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-      <!-- Enable responsiveness on mobile devices-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-      <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-
-      {% if config.generate_rss %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
-      {% endif %}
-
-      {% block css %}
-          <link rel="stylesheet" href="https://unpkg.com/sanitize.css" />
-          <link rel="stylesheet" href="{{ get_url(path="style.css", trailing_slash=false) | safe }}">
-      {% endblock css %}
-
-      {% block extra_head %}
-      {% endblock extra_head %}
-    </head>
-
-    <body>
-
-    {% block content %}
-        {% block header %}
-        <!-- <header> -->
-            <!-- <nav itemscope itemtype="http://schema.org/SiteNavigationElement"> -->
-            <!-- </nav> -->
-        <!-- </header> -->
-        {% endblock header %}
-        <div class="card-container">
-            <div class="card">
-                <div class="card-header">
-                    <div class="left">Kevin Sheng</div>
-                    <div class="right">[gh tw mail]</div>
-                    <div class="clear"></div>
-                    <hr>
+{% block header %}
+{% endblock header %}
+{% block content -%}
+  <div class="card-container">
+    <div class="card">
+      <header>
+        <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+          <h6>
+            <span class="left">
+              <a href="{{ config.base_url }}">Kevin Sheng</a>
+            </span>
+            <span class="right">
+              <a href="https://github.com/ksheng-" target="_blank">gh</a>
+              <a href="https://twitter.com/kvsheng" target="_blank">tw</a>
+              <a href="mailto:kevin.s.sheng@gmail.com" target="_blank">mail</a>
+            </span>
+          </h6>
+        </nav>
+        <div class="clear"></div>
+      </header>
+      <hr>
+      <nav class="card-body">
+        <h6>Projects</h6>
+        <section>
+          {% for page in paginator.pages -%}
+            <div itemscope itemtype="http://schema.org/CreativeWork">
+                <div class="card-item-name" itemprop="name">
+                  <a href="{{ page.permalink | safe }}">{{ page.title | lower }}</a>
                 </div>
-                {% if config.extras.socials %}
-                    {% for key, value in config.extras.socials %}
-                        {{key}}. {{value}}
-                    {% endfor %}
-                {% endif %}
-                {% for page in paginator.pages %}
-                    {{ post_macros::page_in_card(page=page) }}
-                {% endfor %}
-
-                {% if paginator.number_pagers > 1 %}
-                <nav>
-                <p>
-                    {% if paginator.previous %}
-                    <a href="{{ paginator.previous }}">&laquo; Previous</a> |
-                    {% endif %}
-                    <span>Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
-                    {% if paginator.next %}
-                    | <a href="{{ paginator.next }}">Next &raquo;</a>
-                    {% endif %}
-                </p>
-                </nav>
+                {% if page.description %}
+                  <div class="card-item-desc" itemprop="description">
+                    <em>{{ page.description | safe }}</em>
+                  </div>
+                  <div class="clear"></div>
                 {% endif %}
             </div>
-        </div>
-        {% endblock content %}
-
-        <!-- <footer> </footer> -->
-    </body>
-
-</html>
+          {% endfor -%}
+          <div itemscope itemtype="http://schema.org/CreativeWork">
+              <div class="card-item-name" itemprop="name">
+                <a href="/zizek">learned ideology</a>
+              </div>
+              <div class="card-item-desc" itemprop="description">
+                <em>generate Zizek passages with an LSTM</em>
+              </div>
+              <div class="clear"></div>
+          </div>
+        </section>
+        <section>
+          <a href="{{config.base_url}}/resume.pdf", target="_blank">
+            (resume, last updated June 2018)
+          </a>
+        </section>
+      </nav>
+      {% if paginator.number_pagers > 1 %}
+        <nav class="card-paginator">
+          <section>
+            {% if paginator.previous %}
+              <a href="{{ paginator.previous }}">prev</a>
+            {% else -%}
+              &nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif -%}
+              <span>&nbsp;{{ paginator.current_index }} / {{ paginator.number_pagers }}&nbsp;</span>
+            {% if paginator.next %}
+              <a href="{{ paginator.next }}">next</a>
+            {% else -%}
+              &nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif -%}
+          </section>
+        </nav>
+      {% endif -%}
+    </div>
+    {#
+    {% block page_footer %}
+      <footer class="site-footer">
+        <hr>
+        all content on this site is available under license
+        <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.
+      </footer>
+    {% endblock page_footer %}
+    #}
+  </div>
+{% endblock content -%}

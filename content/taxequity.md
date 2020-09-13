@@ -9,4 +9,5 @@ tags = ["left-urbanism", "dataviz", "mapping"]
 
 [extra]
 repo = "ksheng-/nyc-tax-inequity"
+insert_readme = true
 +++

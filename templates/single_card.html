@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <div class="card-container">
+    <div class="card">
+      {% block header %}
+        <header class="card-header">
+          {{ term.name }}
+        </header>
+      {% endblock header %}
+
+      <nav>
+        {% for page in term.pages -%}
+          {{ post_macros::page_in_card(page=page) }}
+        {% endfor -%}
+      </nav>
+    </div>
+  </div>
+
+{% endblock content %}

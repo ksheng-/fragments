@@ -1,6 +1,6 @@
 +++
-title = "Oscilloscope Smash Bros."
-description = "playing ssbm on an analog scope"
+title = "Oscilloscope SSBM"
+description = "playing smash bros. on an analog scope"
 date = 2016-09-24
 
 [taxonomies]

@@ -19,7 +19,7 @@ h6 {
   color: inherit;
   font-family: inherit;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 h1 {
@@ -58,7 +58,7 @@ small {
 }
 
 pre {
-  background: $grey;
+  background: lighten($black, 10%);
   color: $text;
   display: block;
   font-family: $monospace;
@@ -88,7 +88,7 @@ a {
 
   &:hover,
   &:focus {
-    color: darken($primary, 10%);
+    color: $link-hover-color;
     text-decoration: underline;
   }
 }

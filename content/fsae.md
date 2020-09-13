@@ -1,6 +1,6 @@
 +++
 title = "Formula SAE"
-description = "building a racecar"
+description = "racecar!"
 date = 2018-09-24
 
 [taxonomies]
